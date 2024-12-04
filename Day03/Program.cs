@@ -1,20 +1,20 @@
 ﻿using System.Text.RegularExpressions;
 
-var memory = File.ReadAllText("input.txt");
-Console.WriteLine("Part One: {0}", ProcessMemory(memory));
+var mem = File.ReadAllText("input.txt");
+Console.WriteLine("Part One: {0}", ProcessMemory(mem));
 
 // Part two - Preprocess
 const string OP_DO = "do()";
 const string OP_DONT = "don't()";
-var posdont = memory.IndexOf(OP_DONT);
-while (posdont > 0)
+var posDont = mem.IndexOf(OP_DONT);
+while (posDont > 0)
 {
-    var posdo = memory.IndexOf(OP_DO, posdont + 1);
-    memory = memory.Remove(posdont, posdo - posdont);
-    posdont = memory.IndexOf(OP_DONT);
+    var posDo = mem.IndexOf(OP_DO, posDont + 1);
+    mem = mem.Remove(posDont, posDo - posDont);
+    posDont = mem.IndexOf(OP_DONT);
 }
 
-Console.WriteLine("Part Two: {0}", ProcessMemory(memory));
+Console.WriteLine("Part Two: {0}", ProcessMemory(mem));
 
 static long ProcessMemory(string memory)
 {
@@ -31,6 +31,5 @@ static long ProcessMemory(string memory)
 
         result += opResult;
     }
-
     return result;
 }
